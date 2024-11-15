@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import app from '../genDiff.js';
+import app from '../src/index.js';
 
 app();
