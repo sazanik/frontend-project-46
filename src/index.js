@@ -1,7 +1,7 @@
 import path from 'path';
 import { program } from 'commander';
 
-import { parseFile } from './utils/index.js';
+import { genDiff, parseFile } from './utils/index.js';
 
 const app = () => {
   program
@@ -15,14 +15,12 @@ const app = () => {
       const absolutePath1 = path.resolve(process.cwd(), filepath1);
       const absolutePath2 = path.resolve(process.cwd(), filepath2);
 
-      console.log(222, absolutePath1);
-      console.log(333, absolutePath2);
+      const obj1 = parseFile(absolutePath1);
+      const obj2 = parseFile(absolutePath2);
 
-      const data1 = parseFile(absolutePath1);
-      const data2 = parseFile(absolutePath2);
+      const diffs = genDiff(obj1, obj2);
 
-      console.log('data1: ', data1);
-      console.log('data2: ', data2);
+      console.log(diffs);
     });
 
   program.parse(process.argv);
