@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const genDiff = (obj1, obj2) => {
+export default (obj1, obj2) => {
   // Getting all the keys from both objects and sort them
   const sortedKeys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
 
@@ -33,5 +33,3 @@ const genDiff = (obj1, obj2) => {
   // Collecting the final line
   return `{\n${diffs.join('\n')}\n}`;
 };
-
-export default genDiff;
