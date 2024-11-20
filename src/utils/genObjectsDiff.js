@@ -4,6 +4,10 @@ export default (obj1, obj2) => {
   // Getting all the keys from both objects and sort them
   const sortedKeys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
 
+  if (!sortedKeys.length) {
+    return ``;
+  }
+
   // Forming difference lines
   const diffs = sortedKeys.map((key) => {
     // Checking for the presence of keys in both objects

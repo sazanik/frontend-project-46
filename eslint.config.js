@@ -4,7 +4,7 @@ import pluginJs from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
-import { __dirname } from './globals.js';
+import { __dirname } from './globalVariables.js';
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
@@ -16,7 +16,8 @@ export default [
     settings: {
       'import/resolver': {
         node: {
-          extensions: ['.js'],
+          'extensions': ['.js', '.ts', '.json'],
+          moduleDirectory: ['node_modules', 'src'],
         },
       },
     },
@@ -24,12 +25,9 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...globals.jest,
       },
       parserOptions: {
-        // Eslint doesn't supply ecmaVersion in `parser.js` `context.parserOptions`
-        // This is required to avoid ecmaVersion < 2015 error or 'import' / 'export' error
-        ecmaVersion: 2025,
+        ecmaVersion: 'latest',
         sourceType: 'module',
       },
     },
@@ -51,12 +49,12 @@ export default [
       ],
       'import/extensions': [
         'error',
+        'ignorePackages',
         {
           js: 'always',
         },
       ],
-      // FIXME: getting error with ?? operator, when enabled
-      'import/named': ['off'],
+      'import/named': ['error'],
       'import/no-named-as-default': 'off',
       'import/no-named-as-default-member': 'off',
       'import/no-extraneous-dependencies': 'off',

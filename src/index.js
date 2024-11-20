@@ -2,8 +2,7 @@ import path from 'path';
 
 import { program } from 'commander';
 
-
-import { genDiff, parseFile } from './utils/index.js';
+import { genObjectsDiff, parseFile } from './utils/index.js';
 
 const app = () => {
   program
@@ -20,7 +19,7 @@ const app = () => {
       const obj1 = parseFile(absolutePath1);
       const obj2 = parseFile(absolutePath2);
 
-      const diffs = genDiff(obj1, obj2);
+      const diffs = genObjectsDiff(obj1, obj2);
 
       console.log(diffs);
     });

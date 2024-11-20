@@ -1,5 +1,5 @@
 gen-diff:
-	node bin/brain-games.js
+	node bin/gen-diff.js
 
 publish:
 	npm publish --dry-run
@@ -7,8 +7,11 @@ publish:
 install: deps-install
 	npx simple-git-hooks
 
-gen-diff-demonstration:
+gen-diff-demonstration-json:
 	node bin/gen-diff.js __fixtures__/file1.json __fixtures__/file2.json
+
+gen-diff-demonstration-yaml:
+	node bin/gen-diff.js __fixtures__/file1.yml __fixtures__/file2.yml
 
 deps-install:
 	npm ci --legacy-peer-deps
@@ -17,12 +20,15 @@ deps-update:
 	npx ncu -u
 
 test:
-	npx jest
+	npm run test
 
 test-coverage:
-	npx jest --coverage --coverageProvider=v8
+	npm run test:coverage
 
 lint:
 	npx eslint .
+
+link:
+	npm link
 
 .PHONY: test
