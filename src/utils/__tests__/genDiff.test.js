@@ -88,7 +88,9 @@ describe('genObjectsDiff', () => {
 
     const result = genObjectsDiff(obj1, obj2);
     expect(result).toBe(`{
-    a: [object Object]
+    a: {
+        x: 1
+    }
   - b: 2
   + b: 3
 }`);

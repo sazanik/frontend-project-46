@@ -10,7 +10,7 @@ const app = () => {
     .description('Compares two configuration files and shows a difference.')
     .version('1.0.0')
     .helpOption('-h, --help', 'output usage information')
-    .option('-f, --format [type]', 'output format')
+    .option('-f, --format [type]', 'output format', 'stylish')
     .arguments('<filepath1> <filepath2>')
     .action((filepath1, filepath2) => {
       const absolutePath1 = path.resolve(process.cwd(), filepath1);
@@ -18,17 +18,20 @@ const app = () => {
 
       const obj1 = parseFile(absolutePath1);
       const obj2 = parseFile(absolutePath2);
+      const options = program.opts();
 
-      const diffs = genObjectsDiff(obj1, obj2);
+      switch (options.format) {
+        case 'stylish':
+          console.log(genObjectsDiff(obj1, obj2));
+          break;
 
-      console.log(diffs);
+        default:
+          console.log(genObjectsDiff(obj1, obj2));
+
+      }
     });
 
   program.parse(process.argv);
-
-  // const options = program.opts();
-  // console.log(options);
-  // console.log(process.argv);
 };
 
 export default app;
