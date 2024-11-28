@@ -1,3 +1,4 @@
-export { default as genObjectsDiff } from './genObjectsDiff.js';
-export { default as getFilePath } from './getFilePath.js';
-export { default as parseFile } from './parseFile.js';
+export { default as genObjectsDiff } from "./genObjectsDiff.js";
+export { default as genPlainDiff } from "./genPlainDiff.js";
+export { default as getFilePath } from "./getFilePath.js";
+export { default as parseFile } from "./parseFile.js";
